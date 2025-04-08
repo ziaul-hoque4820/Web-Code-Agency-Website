@@ -1,6 +1,7 @@
 import React from 'react'
 import { FcSettings, FcSmartphoneTablet, FcMindMap } from "react-icons/fc";
 import { FaCode } from "react-icons/fa6";
+import HeadingSection from '../../components/HeadingSection';
 
 
 const tools = [
@@ -32,10 +33,11 @@ function ToolsSection() {
     return (
         <div className='max-w-screen-2xl container mx-auto py-20 px-5'>
             {/* heading section  */}
-            <div className='text-center mb-10'>
+            {/* <div className='text-center mb-10'>
                 <p className='text-blue-600 font-semibold uppercase'>The Tools you need</p>
                 <h2 className='text-3xl lg:text-4xl font-bold text-gray-700 mt-3'>All-in-One-solution for your projects</h2>
-            </div>
+            </div> */}
+            <HeadingSection  subheading="The Tool you need" heading="All-in-One-solution for your projects" />
 
             {/* tools section  */}
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-16'>
