@@ -3,6 +3,7 @@ import HeroSection from './HeroSection'
 import ToolsSection from './ToolsSection'
 import CompanyLogos from './CompanyLogos'
 import Services from './Services'
+import Testimonials from './Testimonials'
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
       <ToolsSection />
       <CompanyLogos />
       <Services />
+      <Testimonials />
     </div>
   )
 }

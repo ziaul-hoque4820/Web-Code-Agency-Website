@@ -47,3 +47,7 @@
         animation: scroll-sm 8s linear infinite;
     }
 }
+
+.section-container {
+    @apply max-w-screen-2xl container mx-auto py-20 px-5
+}
