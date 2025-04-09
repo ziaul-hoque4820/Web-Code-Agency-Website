@@ -6,6 +6,7 @@ import Services from './Services'
 import Testimonials from './Testimonials'
 import Blogs from '../blogs/Blogs'
 import TeamSection from './TeamSection'
+import Pricing from './Pricing'
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
       <Testimonials />
       <Blogs />
       <TeamSection />
+      <Pricing />
     </div>
   )
 }
