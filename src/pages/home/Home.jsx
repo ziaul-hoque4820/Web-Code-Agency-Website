@@ -4,6 +4,7 @@ import ToolsSection from './ToolsSection'
 import CompanyLogos from './CompanyLogos'
 import Services from './Services'
 import Testimonials from './Testimonials'
+import Blogs from '../blogs/Blogs'
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
       <CompanyLogos />
       <Services />
       <Testimonials />
+      <Blogs />
     </div>
   )
 }
