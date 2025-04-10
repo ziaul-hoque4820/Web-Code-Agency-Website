@@ -9,7 +9,6 @@ import TeamSection from './TeamSection'
 import Pricing from './Pricing'
 import FAQs from './FAQs'
 import Newsletter from './Newsletter'
-import Footer from '../../components/Footer'
 
 function Home() {
   return (

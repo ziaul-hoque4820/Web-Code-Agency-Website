@@ -5,6 +5,7 @@ import './index.css'
 import './App.css'
 import App from './App.jsx'
 import Home from './pages/home/Home.jsx';
+import ErrorPage from './components/ErrorPage.jsx';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -14,6 +15,8 @@ createRoot(document.getElementById('root')).render(
         <Route index path="/pricing" element={<div>Pricing Page</div>} />
         <Route index path="/services" element={<div>Service Page</div>} />
         <Route index path="/blogs" element={<div>Blogs page</div>} />
+
+      <Route path='*' element={<ErrorPage />} />
       </Route>
     </Routes>
   </BrowserRouter>,
