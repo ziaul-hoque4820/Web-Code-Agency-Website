@@ -6,17 +6,21 @@ import './App.css'
 import App from './App.jsx'
 import Home from './pages/home/Home.jsx';
 import ErrorPage from './components/ErrorPage.jsx';
+import Pricing from './pages/home/Pricing.jsx';
+import Services from './pages/home/Services.jsx';
+import Blogs from './pages/blogs/Blogs.jsx';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
       <Route element={<App />}>
         <Route index path="/" element={<Home />} />
-        <Route index path="/pricing" element={<div>Pricing Page</div>} />
-        <Route index path="/services" element={<div>Service Page</div>} />
-        <Route index path="/blogs" element={<div>Blogs page</div>} />
+        <Route index path="/pricing" element={<Pricing />} />
+        <Route index path="/services" element={<Services />} />
+        <Route index path="/blogs" element={<Blogs />} />
 
-      <Route path='*' element={<ErrorPage />} />
+        {/* error Page */}
+        <Route path='*' element={<ErrorPage />} />
       </Route>
     </Routes>
   </BrowserRouter>,
