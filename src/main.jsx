@@ -9,11 +9,13 @@ import ErrorPage from './components/ErrorPage.jsx';
 import Pricing from './pages/home/Pricing.jsx';
 import Services from './pages/home/Services.jsx';
 import Blogs from './pages/blogs/Blogs.jsx';
+import Register from './components/Register.jsx';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
       <Route element={<App />}>
+        {/* main layout */}
         <Route index path="/" element={<Home />} />
         <Route index path="/pricing" element={<Pricing />} />
         <Route index path="/services" element={<Services />} />
@@ -21,7 +23,13 @@ createRoot(document.getElementById('root')).render(
 
         {/* error Page */}
         <Route path='*' element={<ErrorPage />} />
+
+        {/* authentication */}
+        <Route path="/register" element={<Register />} />
+        <Route path='/login' element={<div>Login Page</div>} />
       </Route>
     </Routes>
+
+
   </BrowserRouter>,
 )
