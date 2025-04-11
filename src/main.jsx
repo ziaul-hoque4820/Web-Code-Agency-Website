@@ -10,6 +10,7 @@ import Pricing from './pages/home/Pricing.jsx';
 import Services from './pages/home/Services.jsx';
 import Blogs from './pages/blogs/Blogs.jsx';
 import Register from './components/Register.jsx';
+import Login from './components/Login.jsx';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -26,7 +27,7 @@ createRoot(document.getElementById('root')).render(
 
         {/* authentication */}
         <Route path="/register" element={<Register />} />
-        <Route path='/login' element={<div>Login Page</div>} />
+        <Route path='/login' element={<Login />} />
       </Route>
     </Routes>
 
