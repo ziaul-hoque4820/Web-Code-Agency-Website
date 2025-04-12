@@ -1,22 +1,38 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useAuth } from '../context/AuthContext.jsx';
+import Swal from 'sweetalert2';
 
 function Register() {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+    const { register, handleSubmit, formState: { errors },} = useForm();
 
     const {signupWithEmail} = useAuth();
+
+    const navigate = useNavigate()
 
     const onSubmit = async (data) => {
         try {
             await signupWithEmail(data.email, data.password)
-            alert("Registration successful done!");
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Register me!"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire({
+                    title: "Registration successful!",
+                    text: "Provide your email and password to login",
+                    icon: "success"
+                  });
+                }
+              });
+              navigate("/login")
         } catch (error) {
             console.error("Registration failed", error.message);
         }

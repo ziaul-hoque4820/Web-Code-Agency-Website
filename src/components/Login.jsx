@@ -1,17 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { useAuth } from '../context/AuthContext.jsx';
+import Swal from 'sweetalert2';
 
 function Login() {
+    const [error, setError] = useState("");
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+    const { register, handleSubmit, formState: { errors }, } = useForm();
 
-    const onSubmit = (data) => console.log(data)
+    const {loginWithEmail} = useAuth();
+    const navigate = useNavigate();
+
+    const onSubmit = async (data) => {
+        try {
+            await loginWithEmail(data.email, data.password);
+            console.log("Logged in successfully");
+            Swal.fire({
+                title: "Login Successful",
+                icon: "success",
+                draggable: true,
+              });
+              setError("")
+              navigate("/")
+        } catch (error) {
+            console.error("Failed to login", error)
+            setError("Failed to login. Please provide correct email and password again..")
+        }
+    }
 
 
     return (
@@ -35,6 +52,7 @@ function Login() {
                             type="password" className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2`} />
                         {errors.password && <p className='text-sm italic my-2 text-red-500'>{errors.password.message}</p>}
                     </div>
+                    {error && <p className='text-sm italic text-red-500'>{error}</p> }
                     <button type='submit' className='w-full py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700'>Login</button>
                 </form>
 
