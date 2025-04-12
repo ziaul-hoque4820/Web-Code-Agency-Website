@@ -1,7 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { useAuth } from '../context/AuthContext.jsx'
 
 function Navbar() {
+
+    const { user, logout } = useAuth();
+    console.log(user);
+
+    const handleLogOut = () => {
+        logout();
+    }
+
+
     return (
         <>
             <div className="navbar max-w-screen-2xl container mx-auto bg-white px-5">
@@ -64,8 +74,20 @@ function Navbar() {
                     </ul>
                 </div>
                 <div className="navbar-end space-x-4">
-                    <Link to="/login" className="btn btn-soft btn-accent px-5 hidden sm:flex">Log In</Link>
-                    <Link to="/pricing" className="btn btn-info hover:bg-primary text-white">Start Free Trial</Link>
+                    {
+                        user
+                            ?
+                            (<>
+                                <Link to="/dashboard" className="btn btn-soft btn-accent px-5 hidden sm:flex">Dashboard</Link>
+                                <button onClick={handleLogOut} className="btn btn-info hover:bg-primary text-white">LogOut</button>
+                            </>)
+                            :
+                            (<>
+                                <Link to="/login" className="btn btn-soft btn-accent px-5 hidden sm:flex">Log In</Link>
+                                <Link to="/pricing" className="btn btn-info hover:bg-primary text-white">Start Free Trial</Link>
+                            </>)
+                    }
+
                 </div>
             </div></>
     )

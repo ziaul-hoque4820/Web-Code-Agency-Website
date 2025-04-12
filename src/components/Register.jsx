@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 function Register() {
     const { register, handleSubmit, formState: { errors },} = useForm();
 
-    const {signupWithEmail} = useAuth();
+    const {signupWithEmail, googleLogin} = useAuth();
 
     const navigate = useNavigate()
 
@@ -35,6 +35,16 @@ function Register() {
               navigate("/login")
         } catch (error) {
             console.error("Registration failed", error.message);
+        }
+    }
+
+    // google login 
+    const handleGoogleLogin = async () => {
+        try {
+            await googleLogin();
+            navigate("/")
+        } catch (error) {
+            console.error("Failed to login", error)
         }
     }
 
@@ -68,7 +78,7 @@ function Register() {
                     <p className='text-gray-600'>Or sign-up with</p>
 
                     <div className='flex flex-col sm:flex-row  justify-center  gap-4'>
-                        <button className='flex w-full justify-center items-center px-4 py-2 space-x-2 text-white bg-red-500 rounded hover:bg-red-600'>
+                        <button onClick={handleGoogleLogin} className='flex w-full justify-center items-center px-4 py-2 space-x-2 text-white bg-red-500 rounded hover:bg-red-600'>
                             <FaGoogle />
                             <span>Google</span>
                         </button>

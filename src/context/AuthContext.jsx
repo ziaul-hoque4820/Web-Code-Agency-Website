@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import app from '../firebase/firebase.config.js';
 
 const AuthContext = createContext();
@@ -13,7 +13,7 @@ export const useAuth = () => {
 const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const auth = getAuth(app);
 
@@ -26,8 +26,27 @@ const AuthProvider = ({children}) => {
     const loginWithEmail = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
+    // google sign in
+    const googleLogin = () => {
+        const googleProvider = new GoogleAuthProvider()
+        return signInWithPopup(auth, googleProvider)
+    }
 
-    const authValue  = {user, signupWithEmail, loginWithEmail}
+    // logout functionality 
+    const logout = () => {
+        return signOut(auth)
+    }
+
+    // monitor or manage user state 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser)
+            setLoading(false)
+          });
+          return unsubscribe;
+    }, [auth])
+
+    const authValue  = {user, signupWithEmail, loginWithEmail, googleLogin, logout}
     return (
         <AuthContext.Provider value={authValue }>
             {!loading && children}
