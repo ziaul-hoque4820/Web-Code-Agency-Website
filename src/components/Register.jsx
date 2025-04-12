@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 import { Link } from 'react-router';
+import { useAuth } from '../context/AuthContext.jsx';
 
 function Register() {
     const {
@@ -10,7 +11,16 @@ function Register() {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => console.log(data)
+    const {signupWithEmail} = useAuth();
+
+    const onSubmit = async (data) => {
+        try {
+            await signupWithEmail(data.email, data.password)
+            alert("Registration successful done!");
+        } catch (error) {
+            console.error("Registration failed", error.message);
+        }
+    }
 
 
     return (

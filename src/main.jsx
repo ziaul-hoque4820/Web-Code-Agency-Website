@@ -11,26 +11,27 @@ import Services from './pages/home/Services.jsx';
 import Blogs from './pages/blogs/Blogs.jsx';
 import Register from './components/Register.jsx';
 import Login from './components/Login.jsx';
+import AuthProvider from './context/AuthContext.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Routes>
-      <Route element={<App />}>
-        {/* main layout */}
-        <Route index path="/" element={<Home />} />
-        <Route index path="/pricing" element={<Pricing />} />
-        <Route index path="/services" element={<Services />} />
-        <Route index path="/blogs" element={<Blogs />} />
+  <AuthProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<App />}>
+          {/* main layout */}
+          <Route index path="/" element={<Home />} />
+          <Route index path="/pricing" element={<Pricing />} />
+          <Route index path="/services" element={<Services />} />
+          <Route index path="/blogs" element={<Blogs />} />
 
-        {/* error Page */}
-        <Route path='*' element={<ErrorPage />} />
+          {/* error Page */}
+          <Route path='*' element={<ErrorPage />} />
 
-        {/* authentication */}
-        <Route path="/register" element={<Register />} />
-        <Route path='/login' element={<Login />} />
-      </Route>
-    </Routes>
-
-
-  </BrowserRouter>,
+          {/* authentication */}
+          <Route path="/register" element={<Register />} />
+          <Route path='/login' element={<Login />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </AuthProvider>,
 )
